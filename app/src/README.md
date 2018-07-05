@@ -192,6 +192,6 @@ setTimeout(search.run, 5000)
 ```
 ```typescript
 // page.ts
-import './../../Search.ts';
+import './../../Search';
 ```
   
