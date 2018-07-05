@@ -1,0 +1,7 @@
+mixin radio(radios)
+  div&attributes(attributes)
+    each radio in radios
+      span
+        input(id=radio.id type="radio" name=radio.name)
+        label(for=radio.id)= radio.name
+

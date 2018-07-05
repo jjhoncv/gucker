@@ -1,0 +1,46 @@
+//- imports mixins
+include /src/components/Tabs/index
+include /src/components/Search/radio/index
+include /src/components/Search/select/index
+include /src/components/Search/fromTo/index
+
+//- config component
+-
+  let radios = [
+    {id:1, value:1, name:"Todos"},
+    {id:2, value:2, name:"Nuevos"},
+    {id:3, value:3, name:"Usados"}
+  ]
+
+  let selects = [
+    {name:'brand', value:'Escoge tu Marca', options:[{value:1, text:'Toyota'}]},
+    {name:'model', value:'Escoge tu Modelo', options:[]}
+  ]
+
+  let fromTo = [
+    {label: 'Año', from: 'desde', to: 'hasta'},
+    {label: 'Precio($)', from: 'desde', to: 'hasta'}
+  ]
+
+
+div
+  form
+    +tabbed
+      +tabHeader
+        +tabHead(href="#tab1")
+          | Autos
+        +tabHead(href="#tab2")
+          | Motos
+        +tabHead(href="#tab3")
+          | Motos y Camiones
+      +tabWrap
+        +tabContent(id="tab1")
+          +radio(radios)(class="box-group")
+          +select(selects)(class="box-group")
+          +fromTo(fromTo)(class="box-group")
+          .box-group
+            button Buscar
+        +tabContent(id="tab2")
+          | content Tab 2
+        +tabContent(id="tab3")
+          | content Tab 2

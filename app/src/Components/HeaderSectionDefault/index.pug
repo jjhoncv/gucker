@@ -1,0 +1,13 @@
+//- Imports mixins
+include /src/Components/SearchAutocomplete/index
+include /src/Sections/MenuSection/MenuSectionDefault/index
+include /src/Sections/MenuSection/MenuSectionDefault/index
+
+
+mixin HeaderSectionDefault()
+    div
+        img.logo(src="", alt="")
+        +searchAutocomplete()
+        +eplanning('pestania')
+        +MenuSectionDefault()
+

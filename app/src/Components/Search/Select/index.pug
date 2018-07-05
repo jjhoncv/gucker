@@ -1,0 +1,8 @@
+mixin select(selects)
+  div&attributes(attributes)
+    each select in selects
+      span
+        select(name=select.name)
+          option(value=select.value)
+          each(option in select.options)
+            option(value=option.value) #{option.text}

@@ -1,0 +1,22 @@
+extends /src/page/layout
+
+//- Imports mixins
+include /src/page/Sections/HeaderSection/HeaderSectionDefault/index
+include /src/page/Sections/SearchSection/SearchSectionDefault/index
+include /src/page/Sections/TabsSection/TabsSectionDefault/index
+include /src/page/Sections/TabsSection/TabsSectionDefault/index
+include /src/page/Sections/SliderSection/SliderSectionDefault/index
+include /src/page/Sections/InfoSection/InfoSectionDefault/index
+include /src/page/Sections/FooterSection/FooterSectionDefault/index
+
+block content
+    header.s-header
+        +HeaderSectionDefault()
+    main
+        +SearchSectionDefault()
+        +TabsSectionDefault()
+        +TabsSectionDefault()
+        +SliderSectionDefault()
+        +InfoSectionDefault()
+    footer
+        +FooterSectionDefault()

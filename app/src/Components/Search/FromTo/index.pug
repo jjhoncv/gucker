@@ -1,0 +1,6 @@
+mixin fromTo(data)
+  div&attributes(attributes)
+    each item in data
+      span #{item.label}
+      input(type="text" name=item.from)
+      input(type="text" name=item.to)
