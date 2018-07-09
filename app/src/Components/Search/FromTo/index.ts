@@ -1,49 +1,36 @@
-import { QueryDom } from '../../../Vendor/selector';
-import { Event } from '../../../vendor/event';
-import { IModule } from '../../../Interfaces/Module';
+import { Component } from './../../../Interfaces/Component';
+import { Dom } from './../../../Vendor/Dom';
 
-export class FromTo implements IModule {
-  private dom;
-  constructor(
-    private queryDom: QueryDom,
-    private event: Event,
-    private st: any
-  ) {
-    this.initialize();
+export interface stFromTo {
+  fromText: string;
+  toText: string;
+}
+
+export interface domFromTo {
+  fromText: JQuery;
+  toText: JQuery;
+}
+
+export class FromTo extends Dom implements Component {
+  public dom: {
+    fromText: JQuery;
+    toText: JQuery;
+  };
+  private constructor(private st: stFromTo) {
+    super();
   }
-
   public catchDom(): void {
-    this.dom = this.queryDom.all(this.st);
+    this.dom.fromText = this.queryDom(this.st.fromText);
+    this.dom.toText = this.queryDom(this.st.toText);
   }
-
   public suscribeEvents(): void {
-    this.event.on('blur', this.dom.fromText, this.onBlurFromText.bind(this));
-    this.event.on('blur', this.dom.toText, this.onBlurToText.bind(this));
+    this.dom.fromText.on('blur', this.blurFromText);
   }
-
-  private onBlurFromText(evt): void {
-    let valueFromText = this.dom.fromText[0].value;
-    let valueToText = this.dom.toText[0].value;
-
-    if (this.validFields(valueFromText, valueToText)) {
-      this.dom.fromText[0].classList.add('u-error');
-    }
+  public blurFromText(evt: Event): void {}
+  public blurShow() {
+    this.dom.fromText.trigger('blur');
   }
-
-  private onBlurToText(evt): void {
-    let valueFromText = this.dom.fromText[0].value;
-    let valueToText = this.dom.toText[0].value;
-
-    if (this.validFields(valueFromText, valueToText)) {
-      this.dom.toText[0].classList.add('u-error');
-    }
-  }
-
-  private validFields(fromText, toText): boolean {
-    return fromText > toText;
-  }
-
-  public initialize(): void {
+  public asyncInitialize(): void {
     this.catchDom();
     this.suscribeEvents();
   }
